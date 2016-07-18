@@ -1,0 +1,50 @@
+//
+//  main.c
+//  final grade calc
+//
+//  Created by Rehan Chinoy on 7/3/16.
+//  Copyright © 2016 Rehan Chinoy. All rights reserved.
+//
+
+#include <stdio.h>
+
+float calculate(int, float, float);
+void output(float);
+
+int main()
+{
+    int pofg;
+    float currentg, desiredg, needg;
+    puts("Please enter your current grade in the class:");
+    scanf("%f", &currentg);
+    puts("Please enter your desired grade in the class:");
+    scanf("%f", &desiredg);
+    puts("Please enter the percent of the class grade that the final is worth");
+    scanf("%d", &pofg);
+    needg = calculate(pofg, currentg, desiredg);
+    output(needg);
+    return 0;
+}
+
+float calculate(int percent, float current, float desired)
+{
+    float need;
+    need = (100 * desired - ((100 - percent) * current))/percent;
+    return(need);
+}
+
+void output(float required)
+{
+    printf("\nYou must get a %.2f or higher on your final.\n", required);
+    if (required > 0 && required < 70)
+        printf("Don't even bother to study.");
+    else
+        if (required > 70 && required < 90)
+            printf("You can do it!");
+        else
+            if (required > 90 && required < 97)
+                printf("If you study you can do it!");
+            else
+                if (required > 97)
+                    printf("Ouch, that's rough. Ask your teacher for extra credit.");
+}
